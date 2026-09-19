@@ -40,7 +40,7 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
     this._customIcons={};this._iconsLoaded=false;
     this._E={vc:'',vc_alt:null,bat:null,status:null,mode:null,fan:null,water:null};
   }
-  _modeInt(){return{'Sweep':1,'Mop':2,'Sweep Mop':3,'Sweep Before Mopping':4,'Vacuuming':1,'Mopping':2,'Vacuuming & Mopping':3,'Vacuuming before mopping':4}[this._cleanMode]||1;}
+  _modeInt(){return{'Sweep':1,'Mop':2,'Sweep Mop':3,'Sweep Before Mopping':4,'Vacuuming':1,'Mopping':2,'Vacuuming & Mopping':3,'Vacuuming before mopping':4,'Aspirar':1,'Pasar la mopa':2,'Aspirar y pasar la mopa':3,'Aspirar antes de pasar la mopa':4}[this._cleanMode]||1;}
   _fanInt(){return{'Silent':1,'Basic':2,'Standard':2,'Strong':3,'Full Speed':4,'Turbo':4}[this._fanLevel]||4;}
   _waterInt(){return{'Off':0,'Level1':1,'Level2':2,'Level3':3}[this._waterLevel]||0;}
   setConfig(c){
@@ -260,6 +260,7 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
   _optLabel(v){return({
     'Sweep':'Vacuuming','Mop':'Mopping','Sweep Mop':'Vac & Mop','Sweep Before Mopping':'Vac before Mop',
     'Vacuuming':'Vacuuming','Mopping':'Mopping','Vacuuming & Mopping':'Vac & Mop','Vacuuming before mopping':'Vac before Mop',
+    'Aspirar':'Aspirar','Pasar la mopa':'Mopa','Aspirar y pasar la mopa':'Aspirar y mopa','Aspirar antes de pasar la mopa':'Aspirar y luego mopa',
     'Silent':'Silent','Basic':'Standard','Standard':'Standard','Strong':'Strong','Full Speed':'Turbo','Turbo':'Turbo',
     'Off':'Off','Level1':'Level 1','Level2':'Level 2','Level3':'Level 3',
   })[v]||v;}
@@ -318,11 +319,12 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
     const _om={
       'Sweep':{icon:'vac',label:'Vacuuming'},'Mop':{icon:'mop',label:'Mopping'},'Sweep Mop':{icon:'vacmop',label:'Vac & Mop'},'Sweep Before Mopping':{icon:'vacbmop',label:'Vac before Mop'},
       'Vacuuming':{icon:'vac',label:'Vacuuming'},'Mopping':{icon:'mop',label:'Mopping'},'Vacuuming & Mopping':{icon:'vacmop',label:'Vac & Mop'},'Vacuuming before mopping':{icon:'vacbmop',label:'Vac before Mop'},
+      'Aspirar':{icon:'vac',label:'Aspirar'},'Pasar la mopa':{icon:'mop',label:'Mopa'},'Aspirar y pasar la mopa':{icon:'vacmop',label:'Aspirar y mopa'},'Aspirar antes de pasar la mopa':{icon:'vacbmop',label:'Aspirar y luego mopa'},
       'Silent':{icon:'silent',label:'Silent'},'Basic':{icon:'standard',label:'Standard'},'Standard':{icon:'standard',label:'Standard'},'Strong':{icon:'strong',label:'Strong'},'Full Speed':{icon:'turbo',label:'Turbo'},'Turbo':{icon:'turbo',label:'Turbo'},
       'Off':{icon:'w0',label:'Off'},'Level1':{icon:'w1',label:'Level 1'},'Level2':{icon:'w2',label:'Level 2'},'Level3':{icon:'w3',label:'Level 3'},
     };
     const _fb={icon:'spn',label:'?'};
-    const _mOrder=['Vacuuming','Vacuuming & Mopping','Vacuuming before mopping','Mopping','Sweep','Sweep Mop','Sweep Before Mopping','Mop'];
+    const _mOrder=['Vacuuming','Vacuuming & Mopping','Vacuuming before mopping','Mopping','Sweep','Sweep Mop','Sweep Before Mopping','Mop','Aspirar','Aspirar y pasar la mopa','Aspirar antes de pasar la mopa','Pasar la mopa'];
     const mOpts=(this._modeOpts||['Vacuuming','Vacuuming & Mopping','Vacuuming before mopping','Mopping']).slice().sort((a,b)=>{const ai=_mOrder.indexOf(a),bi=_mOrder.indexOf(b);return(ai<0?99:ai)-(bi<0?99:bi);}).map(v=>({value:v,...(_om[v]||{..._fb,label:v})}));
     const fOpts=(this._fanOpts||['Silent','Standard','Strong','Turbo']).map(v=>({value:v,...(_om[v]||{..._fb,label:v})}));
     const wOpts=(this._waterOpts||['Off','Level1','Level2','Level3']).map(v=>({value:v,...(_om[v]||{..._fb,label:v})}));
@@ -428,6 +430,31 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
     .nr{color:var(--secondary-text-color, #6f7d8d);font-size:14px;padding:20px 0;text-align:center;}
     @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
     .spin{display:inline-flex;animation:spin 0.8s linear infinite;}
+    /* LOOK-START: paleta oscura azulada (borra de aqui a LOOK-END para volver al aspecto del tema de HA) */
+    ha-card{background:linear-gradient(180deg,#18212b,#131a22);border-color:rgba(255,255,255,0.08);}
+    h1,.sh strong{color:#f5f8fc;}
+    .sh em,.pill,.room{color:#a7b3c2;}
+    .sec-hd h2{color:#6f7d8d;}
+    .sh{border-bottom-color:rgba(255,255,255,0.07);}
+    .pill{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.09);}
+    .room{background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015));border-color:rgba(255,255,255,0.07);}
+    .room.active{background:rgba(24,188,242,0.10);border-color:rgba(24,188,242,0.45);box-shadow:0 10px 28px rgba(24,188,242,0.12);color:#f5f8fc;}
+    .ibox{background:rgba(255,255,255,0.06);}
+    .room.active .ibox{background:linear-gradient(180deg,#39c8ff,#18a9e6);box-shadow:0 8px 20px rgba(24,188,242,0.35);}
+    .circle{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);}
+    .opt.active{color:#7fdcff;}
+    .opt.active .circle{background:linear-gradient(180deg,#39c8ff,#18a9e6);box-shadow:0 12px 28px rgba(24,188,242,0.28);}
+    .btn{border-radius:16px;}
+    .pause-btn{background:rgba(255,182,72,0.14);border-color:rgba(255,182,72,0.35);color:#ffb648;}
+    .resume-btn{background:rgba(67,209,124,0.14);border-color:rgba(67,209,124,0.35);color:#43d17c;}
+    .stop-btn{background:rgba(255,107,107,0.14);border-color:rgba(255,107,107,0.35);color:#ff6b6b;}
+    .home-btn{background:rgba(24,188,242,0.14);border-color:rgba(24,188,242,0.35);color:#8bdcff;}
+    .pause-btn .ctrl-icon,.pause-btn .icon-label span{color:#ffb648;}
+    .resume-btn .ctrl-icon,.resume-btn .icon-label span{color:#43d17c;}
+    .stop-btn .ctrl-icon,.stop-btn .icon-label span{color:#ff6b6b;}
+    .home-btn .ctrl-icon,.home-btn .icon-label span{color:#8bdcff;}
+    .start-btn{background:linear-gradient(180deg,#1b6f95,#0f4f6e);border-color:rgba(24,188,242,0.55);color:#fff;}
+    /* LOOK-END */
     </style>
     <ha-card>
     <div class="hdr">
