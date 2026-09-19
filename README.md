@@ -49,7 +49,7 @@ After installation, add the card to your dashboard.
 
 ### Manual
 
-1. Download `xiaomi-s20plus-vacuum-card.js` from the [latest release](https://github.com/tojolab/xiaomi-s20plus-vacuum-card/releases/latest)
+1. Download `xiaomi-s20plus-vacuum-card.js` from the [latest release](https://github.com/jumate/xiaomi-s20plus-vacuum-card/releases/latest)
 2. Copy it to `/config/www/xiaomi-s20plus-vacuum-card.js` on your HA server
 3. In HA → Settings → Dashboards → Resources, add:
    - URL: `/local/xiaomi-s20plus-vacuum-card.js`
