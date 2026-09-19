@@ -144,19 +144,21 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
   }
   _icon(n){
     if(!n)return'mdi:home';const l=n.toLowerCase();
-    if(l.includes('bedroom'))return'mdi:bed';
-    if(l.includes('kitchen'))return'mdi:food-fork-drink';
-    if(l.includes('hallway'))return'mdi:door';
-    if(l.includes('toilet'))return'mdi:toilet';
-    if(l.includes('living'))return'mdi:sofa';
-    if(l.includes('bathroom'))return'mdi:shower';
-    if(l.includes('office'))return'mdi:desk';
+    if(l.includes('dormitorio'))return'mdi:bed';
+    if(l.includes('cocina'))return'mdi:food-fork-drink';
+    if(l.includes('pasillo'))return'mdi:door';
+    if(l.includes('aseo'))return'mdi:toilet';
+    if(l.includes('natalia'))return'mdi:bed-queen-outline';
+    if(l.includes('alex'))return'mdi:bed-single-outline';    
+    if(l.includes('comedor'))return'mdi:sofa';
+    if(l.includes('ducha'))return'mdi:shower';
+    if(l.includes('oficina'))return'mdi:desk';
     if(l.includes('dining'))return'mdi:silverware-fork-knife';
     if(l.includes('garage'))return'mdi:garage';
-    if(l.includes('laundry'))return'mdi:washing-machine';
-    if(l.includes('study'))return'mdi:book-open';
-    if(l.includes('balcony')||l.includes('terrace'))return'mdi:balcony';
-    if(l.includes('corridor')||l.includes('entrance'))return'mdi:door';
+    if(l.includes('lavado'))return'mdi:washing-machine';
+    if(l.includes('estudio'))return'mdi:book-open';
+    if(l.includes('balcon')||l.includes('terrace'))return'mdi:balcony';
+    if(l.includes('entrada')||l.includes('entrance'))return'mdi:door';
     return'mdi:home';
   }
   _svg(key,sz=22,c='currentColor'){
