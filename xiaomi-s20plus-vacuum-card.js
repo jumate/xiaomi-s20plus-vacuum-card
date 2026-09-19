@@ -45,6 +45,7 @@ class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
   _waterInt(){return{'Off':0,'Level1':1,'Level2':2,'Level3':3}[this._waterLevel]||0;}
   setConfig(c){
     this._config=c;
+    const _z=parseFloat(c.zoom);this.style.zoom=(_z>0&&_z!==1)?String(_z):'';
     this._E={
       vc:c.entity||'',
       vc_alt:c.entity_alt||null,
