@@ -1,5 +1,5 @@
 // xiaomi-s20plus-vacuum-card — v1.0.0
-// MIT License — https://github.com/tojolab/xiaomi-s20plus-vacuum-card
+// MIT License — https://github.com/jumate/xiaomi-s20plus-vacuum-card
 
 class XiaomiS20PlusVacuumCardV3 extends HTMLElement {
   _syncThemeVars() {
