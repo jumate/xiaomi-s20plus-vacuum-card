@@ -2,7 +2,8 @@
 
 A custom Lovelace card for Home Assistant that gives you full room-by-room control of your Xiaomi Robot Vacuum S20+ using the [xiaomi_miot](https://github.com/al-one/hass-xiaomi-miot) integration.
 
-<img width="512" height="851" alt="Image" src="https://github.com/user-attachments/assets/0893c9fb-bed0-48f8-ba0c-ac1337e859ce" />
+<img width="607" height="1006" alt="image" src="https://github.com/user-attachments/assets/fa6cfe42-ee3e-4183-9392-322524f8d73f" />
+
 
 ---
 
